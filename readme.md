@@ -62,7 +62,7 @@ Preview your site in your browser at: http://localhost:1313/. You can use Ctrl +
     2. Configure `origin` in the project. From the site’s root directory, set the URL for origin to the new repo:
 
         ```
-        git remote set-url origin https://github.com/NguyenHoaiPhuong/itv-doc.git
+        git remote add origin https://github.com/NguyenHoaiPhuong/itv-doc.git
         ```
 
     3. Verify that remote is configured correctly by running:
@@ -74,7 +74,7 @@ Preview your site in your browser at: http://localhost:1313/. You can use Ctrl +
     4. Push itv-doc to the repository:
 
         ```
-        git push -u origin master
+        git push --set-upstream origin master
         ```
 
 
