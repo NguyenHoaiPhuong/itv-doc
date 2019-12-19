@@ -19,6 +19,7 @@ cd itv-doc
 Get local copies of the project submodules so you can build and run your site locally:
 
 ```
+git submodule add https://github.com/google/docsy.git themes/docsy
 git submodule update --init --recursive
 ```
 
@@ -34,6 +35,13 @@ Preview your site in your browser at: http://localhost:1313/. You can use Ctrl +
 
 - Framework: Hugo version 0.53 or later
 - Theme : Docsy
+
+- Install PostCSS so that the site build can create the final CSS assets. You can install it locally by running the following commands from the root directory of your project:
+
+    ```
+    sudo npm install -D --save autoprefixer
+    sudo npm install -D --save postcss-cli
+    ```
 
 ## Get Started
 
@@ -80,4 +88,8 @@ Preview your site in your browser at: http://localhost:1313/. You can use Ctrl +
 
 ### Basic site configuration
 
-- 
+
+## References
+
+- https://themes.gohugo.io/hugo-theme-techdoc/
+- https://github.com/google/docsy-example

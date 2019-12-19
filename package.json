@@ -1,0 +1,24 @@
+{
+  "name": "itv-doc",
+  "version": "0.0.1",
+  "description": "Hugo theme for technical documentation.",
+  "main": "none.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NguyenHoaiPhuong/itv-doc.git"
+  },
+  "author": "Akagi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NguyenHoaiPhuong/itv-doc/issues"
+  },
+  "homepage": "https://github.com/NguyenHoaiPhuong/itv-doc#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^9.4.6",
+    "postcss-cli": "^5.0.1"
+  }
+}
