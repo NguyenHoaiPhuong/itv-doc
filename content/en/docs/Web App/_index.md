@@ -1,6 +1,6 @@
 ---
-title: "Operating System"
-linkTitle: "Operating System"
+title: "Web App"
+linkTitle: "Web App"
 weight: 1
 description: >
   Here's where your user finds out if your project is for them.
