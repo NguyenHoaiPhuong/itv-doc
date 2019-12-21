@@ -1,38 +1,153 @@
 ---
-title: "Understand reflect in Go"
-linkTitle: "Understand reflect in Go"
+title: "Reflect"
+linkTitle: "Reflect"
 weight: 1
 description: >
-  Here's where your user finds out if your project is for them.
+  Understand reflect in Go
 ---
 
 {{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
+What are the pros and cons of this helpful method?
 {{% /pageinfo %}}
 
-The Overview is where your users find out about your project. Depending on the size of your docset, you can have a separate overview page (like this one) or put your overview contents in the Documentation landing page (like in the Docsy User Guide). 
+<img class="center" src="Reflect.png"></img>
 
-Try answering these questions for your user in this page:
+Go is a strongly and statically typed programming language. However, some features in Go make it seemed to be dynamically typed. For instance, if you are not sure what type you’ll be receiving, you may implement interface type for an open-ended type.
 
-## What is it?
+Remember that only interface has reflect.
 
-Introduce your project, including what it does or lets you do, why you would use it, and its primary goal (and how it achieves it). This should be similar to your README description, though you can go into a little more detail here if you want.
+Note that interface allows polymorphism in Go. No particular implementation is enforced. It could be string, int64, float32, or even a collection ( array/ map). When a computer runs a code (runtime), reflect helps to examine, introspect, and modify its own structure and behaviour. This process allows us to know the type of an object and memory structure during runtime.
 
-## Why do I want it?
+## Why do we need `reflect`?
 
-Help your user know if your project will help them. Useful information can include: 
+1. Unable to pre-define parameter type. (Usually happens in exposing open API)
 
-* **What is it good for?**: What types of problems does your project solve? What are the benefits of using it?
+2. Function is dynamically executed depending on parameter input. 
 
-* **What is it not good for?**: For example, point out situations that might intuitively seem suited for your project, but aren't for some reason. Also mention known limitations, scaling issues, or anything else that might let your users know if the project is not for them.
+## Disadvantages of `reflect`
 
-* **What is it *not yet* good for?**: Highlight any useful features that are coming soon.
+1. Affects code readability.
 
-## Where should I go next?
+2. Unable to detect errors during code compilation. As a statically typed language, the Go compiler will pre-check some types of error during compilation. When type is not explicitly defined in interface, the server is at risk of panicking after running the code.
 
-Give your users next steps from the Overview. For example:
+3. Decreases the overall performance. Using reflect requires the server to do additional work to find the type behind a parameter. Therefore, try to avoid interface in important parameters.
 
-* [Getting Started](/getting-started/): Get started with $project
-* [Examples](/examples/): Check out some example code!
+## Two Fundamental Functions of reflect
 
-<a href="https://medium.com/better-programming/understand-reflect-in-go-24a68fcf1011">References</a>
+The two main functions of reflect are ```reflect.Type``` and ```reflect.Value```.
+
+In short, ```reflect.Type``` provides information on the type of parameter, while ```reflect.Value``` combines ```_type``` and ```data```, which allows developers to read or edit the value of the parameter.
+
+```
+func TypeOf(i interface{}) Type
+func ValueOf(i interface{}) Value
+```
+
+Then, you may use ```fmt.Printf()``` and ```%T``` as formatting params to get the result of ```reflect.TypeOf``` as follows:
+
+```
+fmt.Printf("%T", 3) //int
+```
+
+Under ```reflect.Type```, ```toType``` is a method to change the type.
+
+```
+func toType(t * rtype) Type {
+  if t == nil {
+    return nil
+  }
+  return t
+}
+```
+
+On the other hand, ```reflect.Value``` returns the variable stored in interface{}. It has many methods including ```SetLen(n int)``` (to set length of variable), ```SetMapIndex(key, val Value)``` (to set kv in map), ```Int()``` (to get value with int type), ```TrySend(x reflect.Value)``` (to send data to a channel), etc. For full documentation, please refer to src/reflect/value.go.
+
+<img class="center" src="Relationship.png"></img>
+<p class="center">Type and Value of reflect in golang</p>
+
+## Three Rules in reflect
+
+From the Go official site:
+
+1. Reflection goes from interface value to reflection object.
+
+2. Reflection goes from reflection object to interface value.
+
+3. To modify a reflection object, the value must be settable.
+
+A typical example is as follows:
+
+```
+var x float64 = 3.4
+v := reflect.ValueOf(x)
+v.SetFloat(7.1) // Error: will panic
+```
+
+The server will panic if you run the code above, simply because ```v``` is not ```x``` itself, but merely a copy of x. Hence, any modification of v is prohibited.
+
+So, we need a pointer to solve the issue:
+
+```
+var x float64 = 3.4
+y := reflect.ValueOf(&x)
+fmt.Println(“type of y”, y.Type()) // *float64
+fmt.Println(“settability of y:”, y.CanSet()) // false
+```
+
+```y``` is still not representing ```x```. You need ```y.Elem()``` to apply the modification to it:
+
+```
+z := y.Elem()
+z.SetFloat(7.1)
+fmt.Println(z.Interface()) // 7.1
+fmt.Println(x) // 7.1
+```
+
+Note that the pointer will change the pointed variable too; in our context, the ```x```.
+
+## Applications of reflect
+
+```reflect``` is widely used in object serialisation, fmt-related functions, ORM (Object Relational Mapping), etc.
+
+### 1. JSON Serialisation
+
+<img class="center" src="JSON.png"></img>
+
+In Go, there are two functions to serialise and deserialise:
+
+```
+func Marshal(v interface{})([]byte, error)
+func Unmarshal(data []byte, v interface{}) error
+```
+
+Both functions have ```interface{}``` type in the parameters, so ```reflect``` is required when we call these functions so that we can know all the values and types of the params and hence apply ```get``` or ```set``` methods.
+
+### 2. DeepEqual Function
+
+In debugging a function, often we need to justify whether two variables are exactly the same. For instance, to determine whether all elements in the slice are the same or to check that the key and value of a map are equal. This can be realised through ```DeepEqual``` function.
+
+```
+func DeepEqual(x, y interface{}) bool
+```
+
+```DeepEqual()``` has two interface params. You may input any value into it, and it will return true or false after checking whether the two variables are deeply equal.
+
+Wait, what is deeply equal? Let’s see an example here:
+
+```
+type FirstInt int
+type SecondInt int
+
+func main() {
+  m := FirstInt(1)
+  n := SecondInt(1)
+  
+  fmt.Println(reflect.DeepEqual(m, n)) // false
+}
+```
+
+In the example above, m and n are both int and have a value of 1. However, the dynamic type of these two variables is different. First variable m has a type of FirstInt, and the second variable n has a type of SecondInt. Therefore, they are not deeply equal.
+
+## Conclusion
+
+Go, as a static language, will have certain limitations in flexibility as compared to a dynamic language like Python. But, by using reflect to give abilities similar to those of a dynamic language, you can fluidly get the type or value of parameters when writing in Go.
