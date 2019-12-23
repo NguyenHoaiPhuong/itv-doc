@@ -1,11 +1,11 @@
 ---
-title: "Postgres"
-linkTitle: "Postgres"
+title: "PostgreSQL"
+linkTitle: "PostgreSQL"
 weight: 1
 description: >
   Here's where your user finds out if your project is for them.
 ---
 
 {{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
+This PostgreSQL tutorial helps you understand PostgreSQL quickly. You will learn PostgreSQL fast through many practical examples. We will show you not only problems but also how to solve them creatively in PostgreSQL.
 {{% /pageinfo %}}
