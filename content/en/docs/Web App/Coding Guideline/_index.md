@@ -49,7 +49,7 @@ TODO
 
 ## Coding goals
 
-When creating code, we should always strive for it to have the following features :
+When creating code, we should always strive for it to have the following features:
 
 * Robustness : changing something should should not break other part of the codebase
 * Changeability : it should be relatively easy to introduce changes
