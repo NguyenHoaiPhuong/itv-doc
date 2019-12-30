@@ -27,4 +27,3 @@ A database is a container of other objects such as **tables**, **views**, **func
 ### Tables
 
 A special feature of PostgreSQL is table inheritance, meaning that a table (child table) can inherit from another table (parent table) so when you query data from the child table, the data from the parent table is also showing up.
-
