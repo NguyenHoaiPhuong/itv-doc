@@ -1,10 +1,14 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 1
+weight: 2
 description: >
   Flutter - Installation.
 ---
+
+```
+sudo snap install android-studio --classic
+```
 
 ## Reference
 
