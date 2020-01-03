@@ -55,3 +55,85 @@ Notice that the `DISTINCT ON` expression must match the leftmost expression in t
 
 ## Examples
 
+### Create new table
+
+Firstly, let’s create a new table named **t1** and insert data into the table for practicing the `DISTINCT` clause. There are 3 columns inside this table: id, bcolor and fcolor.
+
+```
+CREATE TABLE t1 (
+  id serial NOT NULL PRIMARY KEY,
+  bcolor VARCHAR,
+  fcolor VARCHAR
+)
+```
+
+Second, insert some rows into table t1 using the following `INSERT` statement:
+
+```
+INSERT INTO t1 (bcolor, fcolor)
+VALUES
+  ('red', 'red'),
+  ('red', 'red'),
+  ('red', NULL),
+  (NULL, 'red'),
+  ('red', 'green'),
+  ('red', 'blue'),
+  ('green', 'red'),
+  ('green', 'blue'),
+  ('green', 'green'),
+  ('blue', 'red'),
+  ('blue', 'green'),
+  ('blue', 'blue');
+```
+
+Third, query the data from the t1 table using the SELECT statement:
+
+```
+SELECT
+  id,
+  bcolor,
+  fcolor
+FROM
+  t1;
+```
+
+### DISTINCT on one column
+
+```
+SELECT
+  DISTINCT bcolor
+FROM
+  t1
+ORDER BY
+  bcolor;
+```
+
+### DISTINCT on multiple columns
+
+```
+SELECT
+  DISTINCT bcolor,
+  fcolor
+FROM
+  t1
+ORDER BY
+  bcolor,
+  fcolor;
+```
+
+Because we specified both `bcolor` and `fcolor` columns in the `SELECT DISTINCT` clause, PostgreSQL combined the values in both `bcolor` and `fcolor` columns to evaluate the uniqueness of the rows.
+
+### DISTINCT ON
+
+```
+SELECT
+  DISTINCT ON (bcolor) bcolor,
+  fcolor
+FROM
+  t1
+ORDER BY
+  bcolor,
+  fcolor
+```
+
+The following statement sorts the result set by the `bcolor` and `fcolor`, and then for each group of duplicates, it keeps the first row in the returned result set.
