@@ -4,14 +4,6 @@ Add styles or override variables from the theme here.
 
 */
 
-// img {
-//     display: block;
-//     margin-left: auto;
-//     margin-right: auto;
-//     width: 80%;
-//     text-align: center;
-// }
-
 .center {
     display: block;
     margin-left: auto;
@@ -19,3 +11,20 @@ Add styles or override variables from the theme here.
     width: 70%;
 }
 
+.table-2 {    
+    // table-layout: fixed;
+    // border: 1px solid #ddd;
+    width: 100%;
+}
+
+.thirty {
+    // width: 30%;
+    width: 300px;
+    // background: tomato;
+}
+
+.seventy {
+    // width: 70%;
+    width: 700px;
+    // background: turquoise;
+}
