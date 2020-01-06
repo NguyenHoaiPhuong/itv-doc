@@ -29,7 +29,15 @@ Build your site:
 hugo server
 ```
 
-Preview your site in your browser at: http://localhost:1313/. You can use Ctrl + c to stop the Hugo server whenever you like.
+or,
+
+```
+hugo server --bind 0.0.0.0 --baseURL http://10.0.0.153:1313
+```
+
+where bind and baseURL flags are used for accessing the server by another devices in LAN.
+
+Preview your site in your browser at: http://localhost:1313/ or http://10.0.0.153:1313. You can use Ctrl + c to stop the Hugo server whenever you like.
 
 ## Prerequisites
 
