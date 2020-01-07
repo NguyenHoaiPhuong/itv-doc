@@ -88,3 +88,9 @@ import (
 https://outcrawl.com/go-elastic-search-service
 
 https://viblo.asia/p/elasticsearch-la-gi-1Je5E8RmlnL
+
+https://levanphu.info/tim-hieu-ve-elasctic-search
+
+https://github.com/elastic/elasticsearch/issues/25067
+
+https://github.com/docker/kitematic/issues/5029
