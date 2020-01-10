@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 1
+weight: 2
 description: >
   Elasticsearch Installation.
 ---
@@ -66,7 +66,29 @@ If Elasticsearch is working, the response of above request will be
 
 ## Running as a daemon
 
+To run `Elasticsearch` as a daemon, specify `-d` on the command line, and record the process ID in a file using the -p option:
 
+```
+./bin/elasticsearch -d -p pid
+```
+
+Log messages can be found in the `$ES_HOME/logs/` directory.
+
+To shut down Elasticsearch, kill the process ID recorded in the pid file:
+
+```
+pkill -F pid
+```
+
+## Configuring Elasticsearch on the command line
+
+Elasticsearch loads its configuration from the `$ES_HOME/config/elasticsearch.yml` file by default. The format of this config file is explained in [*Configuring Elasticsearch*](https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html).
+
+Any settings that can be specified in the config file can also be specified on the command line, using the `-E` syntax as follows:
+
+```
+./bin/elasticsearch -d -Ecluster.name=my_cluster -Enode.name=node_1
+```
 
 ## References
 
