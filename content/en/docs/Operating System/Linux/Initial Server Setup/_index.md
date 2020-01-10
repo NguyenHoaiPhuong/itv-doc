@@ -1,7 +1,7 @@
 ---
 title: "Initial Server Setup with Ubuntu 18.04"
 linkTitle: "Initial Server Setup with Ubuntu 18.04"
-weight: 1
+weight: 10
 description: >
   Here's where your user finds out if your project is for them.
 ---
