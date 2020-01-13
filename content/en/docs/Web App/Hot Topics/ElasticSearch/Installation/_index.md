@@ -93,3 +93,7 @@ Any settings that can be specified in the config file can also be specified on t
 ## References
 
 This document is strictly followed the guideline indicated [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html).
+
+Another interesting documents are listed below:
+
+- https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elastic-stack-on-ubuntu-18-04

@@ -34,9 +34,15 @@ It is a collection of different type of documents and their properties. Index al
 
 ### Document
 
+It is a collection of fields in a specific manner defined in JSON format. Every document belongs to a type and resides inside an index. Every document is associated with a unique identifier called the UID.
+
 ### Shard
 
+Indexes are horizontally subdivided into shards. This means each shard contains all the properties of document but contains less number of JSON objects than index. The horizontal separation makes shard an independent node, which can be store in any node. Primary shard is the original horizontal part of an index and then these primary shards are replicated into replica shards.
+
 ### Replicas
+
+Elasticsearch allows a user to create replicas of their indexes and shards. Replication not only helps in increasing the availability of data in case of failure, but also improves the performance of searching by carrying out a parallel search operation in these replicas.
 
 ## Comparison between Elasticsearch, RDBMS and NoSQL Database
 
@@ -79,3 +85,18 @@ It is a collection of different type of documents and their properties. Index al
     <td>Document</td>
   </tr>  
 </table>
+
+## Advantages
+
+- Elasticsearch is developed on Java, which makes it compatible on almost every platform.
+- Elasticsearch is real time, in other words after one second the added document is searchable in this engine
+- Elasticsearch is distributed, which makes it easy to scale and integrate in any big organization.
+- Creating full backups are easy by using the concept of gateway, which is present in Elasticsearch. 
+- Handling multi-tenancy is very easy in Elasticsearch when compared to Apache Solr.
+- Elasticsearch uses JSON objects as responses, which makes it possible to invoke the Elasticsearch server with a large number of different programming languages.
+- Elasticsearch supports almost every document type except those that do not support text rendering.
+
+## Disadvantages
+
+- Elasticsearch does not have multi-language support in terms of handling request and response data (only possible in JSON) unlike in Apache Solr, where it is possible in CSV, XML and JSON formats.
+- Occasionally, Elasticsearch has a problem of Split brain situations.
