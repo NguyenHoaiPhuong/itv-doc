@@ -12,11 +12,11 @@ In this chapter, let us create a simple Flutter application to understand the **
 
 ## Step 2 -- Create Flutter Project. For this, click File → New → New Flutter Project
 
-<img src="new_flutter_project.jpg">
+<img class="center-small" src="new_flutter_project.jpg">
 
 ## Step 3 − Select Flutter Application. For this, select Flutter Application and click Next
 
-<img src="flutter_application_next.jpg">
+<img class="center-small" src="flutter_application_next.jpg">
 
 ## Step 4 − Configure the application as below and click Next
 
@@ -25,7 +25,7 @@ In this chapter, let us create a simple Flutter application to understand the **
 * Project Location: <path_to_project_folder>
 * Description: Flutter based hello world application
 
-<img src="create-new-flutter-project.png">
+<img class="center-small" src="create-new-flutter-project.png">
 
 ## Step 5 − Configure Project
 
@@ -35,7 +35,7 @@ Android Studio creates a fully working flutter application with minimal function
 
 The structure of the application and its purpose is as follows −
 
-<img src="structure_application.jpg">
+<img class="center-small" src="structure_application.jpg">
 
 Various components of the structure of the application are explained here −
 
@@ -106,8 +106,8 @@ Let us understand the dart code line by line.
 
 ## Step 7 − Now, run the application using, Run → Run main.dart
 
-<img src="main_dart.jpg">
+<img class="center-small" src="main_dart.jpg">
 
 ## Step 8 − Finally, the output of the application is as follows
 
-<img src="home_page.jpg">
+<img class="center-small" src="home_page.jpg">
