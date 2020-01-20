@@ -116,7 +116,7 @@ A class is a *blueprint* for creating objects. A class definition includes the f
 * Constructors
 * Functions
 
-Now, let us create a simple class using the above definitions
+Now, let us create a simple class using the above definitions:
 
 ```
 class Employee {
