@@ -1,7 +1,7 @@
 ---
 title: "Flutter"
 linkTitle: "Flutter"
-weight: 1
+weight: 2
 description: >
   Flutter tutorial.
 ---
