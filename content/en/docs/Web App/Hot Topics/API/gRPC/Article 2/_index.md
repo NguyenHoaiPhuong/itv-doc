@@ -11,3 +11,7 @@ By walking through this example you’ll learn how to:
 * Define a service in a .proto file.
 * Generate server and client code using the protocol buffer compiler.
 * Use the Go gRPC API to write a simple client and server for your service.
+
+## References
+
+https://www.grpc.io/docs/tutorials/basic/go/
